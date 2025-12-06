@@ -1,5 +1,9 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from 'generated/prisma';
+import {
+  PaginationQueryType,
+  PaginationResponseType,
+} from 'src/types/unifiedType';
 
 @Injectable()
 export class DatabaseService extends PrismaClient implements OnModuleInit {
@@ -9,6 +13,25 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
   async onModuleInit() {
     await this.$connect();
   }
-  //TODO : Handle query pagination
-  //TODO : Format pagination response
+  // : Handle query pagination
+  handleQueryPagination(query: PaginationQueryType) {
+    const page = Number(query.page ?? 1);
+    const limit = Number(query.limit ?? 10);
+
+    return { skip: (page - 1) * limit, take: limit, page };
+  }
+  // : Format pagination response
+  formatPaginationResponse(args: {
+    count: number;
+    limit: number;
+
+    page: number;
+  }): PaginationResponseType {
+    return {
+      total: args.count,
+      totalPages: Math.ceil(args.count / args.limit),
+      limit: args.limit,
+      page: args.page,
+    };
+  }
 }
