@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum Role {
+  ADMIN
+  OWNER
+  GUEST
+}
+
+enum RoomStatus {
+  AVAILABLE
+  UNAVAILABLE
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+model User {
+  id        BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  name      String   @db.VarChar(255)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  role      Role     @default(GUEST)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  isDeleted Boolean  @default(false) @map("is_deleted")
+
+  //Relations
+  rooms    Room[]
+  bookings Booking[]
+
+  @@index([role], map: "users_role_index")
+  @@map("users")
+}
+
+model Room {
+  id        BigInt     @id @default(autoincrement()) @db.UnsignedBigInt
+  status    RoomStatus @default(AVAILABLE)
+  name      String     @db.VarChar(255)
+  capacity  Int        @db.SmallInt
+  price     Decimal    @db.Decimal(8, 2)
+  ownerId   BigInt     @map("owner_id") @db.UnsignedBigInt
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  //Relations
+  bookings Booking[]
+
+  owner User @relation(fields: [ownerId], references: [id])
+
+  @@index([capacity], map: "rooms_capacity_index")
+  @@index([price], map: "rooms_price_index")
+  @@map("rooms")
+}
+
+model Booking {
+  id        BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
+  status    BookingStatus @default(PENDING)
+  roomId    BigInt        @map("room_id") @db.UnsignedBigInt
+  guestId   BigInt        @map("guest_id") @db.UnsignedBigInt
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+  checkIn   DateTime      @map("check_in")
+  checkOut  DateTime      @map("check_out")
+
+  //Relations
+  guest User @relation(fields: [guestId], references: [id])
+  room  Room @relation(fields: [roomId], references: [id])
+
+  @@index([roomId], map: "bookings_rooms_index")
+  @@map("bookings")
+}
