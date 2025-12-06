@@ -1,26 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { CreateDatabaseDto } from './dto/create-database.dto';
-import { UpdateDatabaseDto } from './dto/update-database.dto';
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { PrismaClient } from 'generated/prisma';
 
 @Injectable()
-export class DatabaseService {
-  create(createDatabaseDto: CreateDatabaseDto) {
-    return 'This action adds a new database';
+export class DatabaseService extends PrismaClient implements OnModuleInit {
+  constructor() {
+    super({ log: ['query', 'info', 'warn', 'error'] });
   }
-
-  findAll() {
-    return `This action returns all database`;
+  async onModuleInit() {
+    await this.$connect();
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} database`;
-  }
-
-  update(id: number, updateDatabaseDto: UpdateDatabaseDto) {
-    return `This action updates a #${id} database`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} database`;
-  }
+  //TODO : Handle query pagination
+  //TODO : Format pagination response
 }
