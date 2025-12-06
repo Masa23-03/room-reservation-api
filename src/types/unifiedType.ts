@@ -1,5 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
 
+export type objectType = Record<string, unknown>;
+
 export type PaginationQueryType = {
   page?: number;
   limit?: number;
