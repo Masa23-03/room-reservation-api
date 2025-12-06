@@ -1,33 +1,80 @@
-// src/utils/object.util.ts
+export declare type Nullable<T = unknown> = T | null | undefined;
 
-// Remove fields from an object (non-mutating).
-export const removeFields = <T extends Record<string, any>, K extends keyof T>(
+export const nonNullableArray = <T>(arr: Nullable<T>[]): T[] =>
+  arr.filter((item) => item !== null && item !== undefined) as T[];
+
+export function extractFields<T extends object, K extends keyof T>(
   obj: T,
   keys: K[],
-): Omit<T, K> => {
-  const clone: any = { ...obj };
+): Pick<T, K> {
+  const pickedObj: Pick<T, K> = {} as Pick<T, K>;
   for (const key of keys) {
-    delete clone[key];
-  }
-  return clone;
-};
-
-// Cast BigInt fields to number or string.
-// Useful when Prisma returns BigInt (e.g., id, totals).
-export const castBigIntDeep = (value: any): any => {
-  if (typeof value === 'bigint') {
-    // decide your strategy: number or string
-    return Number(value); // or value.toString()
-  }
-  if (Array.isArray(value)) {
-    return value.map(castBigIntDeep);
-  }
-  if (value && typeof value === 'object') {
-    const result: Record<string, any> = {};
-    for (const [k, v] of Object.entries(value)) {
-      result[k] = castBigIntDeep(v);
+    // eslint-disable-next-line no-prototype-builtins
+    if (obj.hasOwnProperty(key)) {
+      pickedObj[key] = obj[key];
     }
-    return result;
   }
-  return value;
-};
+  return pickedObj;
+}
+
+export function cleanObject<T extends object>(obj: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(obj).filter(
+      ([, value]) => value !== undefined && value !== null,
+    ),
+  ) as Partial<T>;
+}
+
+export function removeFields<T extends object, K extends keyof T>(
+  obj: T,
+  keys: K[],
+): Omit<T, K> {
+  const filteredObj: Partial<T> = structuredClone(obj);
+  for (const key of keys) {
+    delete filteredObj[key];
+  }
+  return filteredObj as Omit<T, K>;
+}
+
+export function addArrayItemIfNotIncluded<T>(
+  array: T[],
+  newItem: T,
+  optionalFindFunction?: (_: T) => boolean,
+): T[] {
+  // Check if the new item is already included in the array
+  const itemExists = optionalFindFunction
+    ? array.some(optionalFindFunction)
+    : array.includes(newItem);
+
+  // If the item doesn't exist, add it to the array
+  if (!itemExists) {
+    return [...array, newItem]; // Return a new array with the new item added
+  }
+
+  // If the item exists, return the original array
+  return array;
+}
+
+export function sumOfArrayLengths(...arrays: unknown[][]): number {
+  return arrays.reduce((acc, arr) => acc + arr.length, 0);
+}
+
+export function isArrayWithLength(array?: unknown[]): boolean {
+  return Array.isArray(array) && array.length > 0;
+}
+
+export function arrayHasMatches(array1: string[], array2: string[]): boolean {
+  return array1.some((item) => array2.includes(item));
+}
+
+export function chunkArray<T>(array: T[], size: number): T[][] {
+  if (size <= 0) {
+    throw new Error('Size must be greater than 0');
+  }
+
+  const chunks: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, i + size));
+  }
+  return chunks;
+}
