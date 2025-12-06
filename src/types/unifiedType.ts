@@ -28,7 +28,7 @@ export type ApiErrorResponse = {
   statusCode: HttpStatus;
   timestamp: string;
   path: string;
-  field?: { field: string; message: string }[];
+  fields?: { field: string; message: string }[];
 };
 
 export type UnifiedApiResponse<T> =
