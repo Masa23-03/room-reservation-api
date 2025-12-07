@@ -1,4 +1,4 @@
 import { Reflector } from '@nestjs/core';
 
-export const isPublic = Reflector.createDecorator<boolean>();
+export const IsPublic = Reflector.createDecorator<boolean>();
 //to skip auth on public endpoints
