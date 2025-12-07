@@ -1,34 +1,74 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Req,
+  Query,
+} from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { Roles } from 'src/decorators/role.decorator';
+import type {
+  CreateUserDTO,
+  UpdateUserRoleDto,
+  UserResponseDTO,
+} from './dto/user.dto';
+import {
+  updateUserRoleSchema,
+  userValidationSchema,
+} from './schema/user.schema';
+import { ZodValidationPipe } from 'src/pipes/zod-validation.pipe';
+import { AuthedUser } from 'src/decorators/user.decorator';
+import { paginationSchema } from 'src/utils/pagination-schema.util';
+import type { PaginationQueryType } from 'src/types/unifiedType';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  @Roles('ADMIN')
+  create(
+    @Body(new ZodValidationPipe(userValidationSchema))
+    createdUserPayload: CreateUserDTO,
+  ): Promise<UserResponseDTO> {
+    return this.userService.create(createdUserPayload);
   }
 
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  @Roles('ADMIN')
+  findAll(
+    @Req() request: Express.Request,
+    @Query(new ZodValidationPipe(paginationSchema)) query: PaginationQueryType,
+  ) {
+    return this.userService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @Roles('ADMIN')
+  findOne(
+    @Param('id')
+    id: string,
+  ): Promise<UserResponseDTO> {
+    return this.userService.findOne(BigInt(id));
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @Roles('ADMIN')
+  update(
+    @Param('id') id: string,
+    @Body(new ZodValidationPipe(updateUserRoleSchema))
+    userRole: UpdateUserRoleDto,
+  ): Promise<UserResponseDTO> {
+    return this.userService.updateUserRole(BigInt(id), userRole);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  @Roles('ADMIN')
+  remove(@Param('id') id: string): Promise<Boolean> {
+    return this.userService.remove(BigInt(id));
   }
 }
