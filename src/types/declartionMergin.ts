@@ -1,3 +1,6 @@
+import { AuthResponseDto } from 'src/modules/auth/dto/auth.dto';
+import { UserResponseDTO } from 'src/modules/user/dto/user.dto';
+
 export type EnvVariable = {
   PORT: string;
   JWT_SECRET: string;
@@ -7,13 +10,7 @@ export type EnvVariable = {
 declare global {
   namespace Express {
     interface Request {
-      //TODO: add request.user for auth
-      //       user? : AuthResponseDto['user']
-      //       or:
-      // user?: {
-      //     id: string;
-      //     role: Role;
-      //   };
+      user?: UserResponseDTO;
     }
   }
   namespace NodeJS {
