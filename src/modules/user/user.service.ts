@@ -17,24 +17,30 @@ import {
 export class UserService {
   constructor(private readonly prismaService: DatabaseService) {}
   //   - createUser :service only
-  create(createUserDto: CreateUserDTO) {
-    return this.prismaService.user.create({
+  async create(createUserDto: CreateUserDTO): Promise<UserResponseDTO> {
+    const user = await this.prismaService.user.create({
       data: createUserDto,
     });
+    return this.mapUserWithoutPasswordAndCastBigInt(user);
   }
   // - updateUserRole (Admin)
-  updateUserRole(id: bigint, updateRoleDto: UpdateUserRoleDto) {
-    return this.prismaService.user.update({
+  async updateUserRole(
+    id: bigint,
+    updateRoleDto: UpdateUserRoleDto,
+  ): Promise<UserResponseDTO> {
+    const updatedUser = await this.prismaService.user.update({
       where: { id },
       data: { role: updateRoleDto.role },
     });
+    return this.mapUserWithoutPasswordAndCastBigInt(updatedUser);
   }
   // - delete (soft) (Admin)
-  remove(id: bigint) {
-    return this.prismaService.user.update({
+  async remove(id: bigint): Promise<Boolean> {
+    const user = await this.prismaService.user.update({
       where: { id },
       data: { isDeleted: true },
     });
+    return !!user;
   }
   // - FindAll (Admin)
   findAll(
@@ -42,7 +48,7 @@ export class UserService {
   ): Promise<ApiPaginationResponse<UserOverviewResponseDto>> {
     return this.prismaService.$transaction(async (tx) => {
       const pagination = this.prismaService.handleQueryPagination(query);
-      const total = await tx.user.count({
+      const count = await tx.user.count({
         where: { isDeleted: false },
       });
       const users = await tx.user.findMany({
@@ -57,7 +63,7 @@ export class UserService {
           role: true,
         },
       });
-      const count = await tx.user.count();
+
       return {
         success: true,
         data: users.map((u) => ({
