@@ -1,5 +1,5 @@
 import z, { ZodType } from 'zod';
-import { CreateUserDTO } from '../dto/user.dto';
+import { CreateUserDTO, UpdateUserRoleDto } from '../dto/user.dto';
 import { Role } from 'generated/prisma';
 
 // user schema
@@ -9,3 +9,7 @@ export const userValidationSchema = z.object({
   password: z.string().min(6).max(100),
   role: z.nativeEnum(Role).default('GUEST'),
 }) satisfies ZodType<CreateUserDTO>;
+
+export const updateUserRoleSchema = userValidationSchema.pick({
+  role: true,
+}) satisfies ZodType<UpdateUserRoleDto>;
