@@ -1,34 +1,36 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { IsPublic } from 'src/decorators/public.decorator';
+import { ZodValidationPipe } from 'src/pipes/zod-validation.pipe';
+import {
+  loginValidationSchema,
+  registerValidationSchema,
+} from './schema/auth.schema';
+import type { AuthResponseDto, LoginDTO, RegisterDto } from './dto/auth.dto';
+import type { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
-  create(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.create(createAuthDto);
+  @Post('register')
+  @IsPublic()
+  async create(
+    @Body(new ZodValidationPipe(registerValidationSchema)) payload: RegisterDto,
+  ): Promise<AuthResponseDto> {
+    return await this.authService.register(payload);
   }
 
-  @Get()
-  findAll() {
-    return this.authService.findAll();
+  @Post('login')
+  @IsPublic()
+  async login(
+    @Body(new ZodValidationPipe(loginValidationSchema)) payload: LoginDTO,
+  ): Promise<AuthResponseDto> {
+    return await this.authService.login(payload);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
+  @Get('validate')
+  async validate(@Req() request: Request): Promise<AuthResponseDto> {
+    return await this.authService.validate(request.user!);
   }
 }
