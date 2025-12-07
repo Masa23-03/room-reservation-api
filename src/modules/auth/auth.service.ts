@@ -1,26 +1,86 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UserService } from '../user/user.service';
+import { AuthResponseDto, LoginDTO, RegisterDto } from './dto/auth.dto';
+import * as argon2 from 'argon2';
+import { Role } from 'generated/prisma';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
+
+  //   - `register`
+  async register(payLoad: RegisterDto): Promise<AuthResponseDto> {
+    //hash password
+    const hashedPassword = await this.hashPassword(payLoad.password);
+
+    //create user
+    const createdUser = await this.userService.create({
+      ...payLoad,
+      password: hashedPassword,
+    });
+
+    //create token
+    const token = await this.generateJwtToken(createdUser.id, createdUser.role);
+
+    //return auth response: token + user
+    return {
+      token: token,
+      user: createdUser,
+    };
+  }
+  // - `login`
+  async login(payLoad: LoginDTO): Promise<AuthResponseDto> {
+    //find user
+    const foundedUser = await this.userService.findByEmail(payLoad.email);
+    if (!foundedUser) throw new UnauthorizedException('Invalid credentials');
+    if (foundedUser.isDeleted)
+      throw new UnauthorizedException('Invalid credentials');
+
+    //verify argon , and throw error if argon didn't match
+    const verifiedPassword = await this.verifyPassword(
+      payLoad.password,
+      foundedUser.password,
+    );
+    if (!verifiedPassword)
+      throw new UnauthorizedException('Invalid credentials');
+    //create token
+    const token = await this.generateJwtToken(
+      String(foundedUser.id),
+      foundedUser.role,
+    );
+
+    //return auth response: token + user
+    return {
+      user: this.userService.mapUserWithoutPasswordAndCastBigInt(foundedUser),
+      token,
+    };
+  }
+  // - `revalidate`
+  validate(payLoad: AuthResponseDto['user']) {
+    const token = this.generateJwtToken(String(payLoad.id), payLoad.role);
+    return {
+      user: payLoad,
+      token,
+    };
   }
 
-  findAll() {
-    return `This action returns all auth`;
+  //hash password method
+  private hashPassword(password: string) {
+    return argon2.hash(password);
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
+  //generate jwt token method
+  private generateJwtToken(userId: string, role: Role) {
+    return this.jwtService.sign(
+      { sub: userId, role: role },
+      { expiresIn: '30d' },
+    );
   }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+  //verify password
+  private verifyPassword(password: string, hashedPassword: string) {
+    return argon2.verify(hashedPassword, password);
   }
 }
