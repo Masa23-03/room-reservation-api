@@ -14,7 +14,7 @@ import { Request } from 'express';
 export class RoleGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
   canActivate(context: ExecutionContext) {
-    const roles = this.reflector.getAllAndOverride<Role>(Roles, [
+    const roles = this.reflector.getAllAndOverride<Role[]>(Roles, [
       context.getHandler(),
       context.getClass(),
     ]);
