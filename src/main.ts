@@ -6,12 +6,14 @@ import { HttpExceptionFilter } from './exceptions/http.exception';
 import { PrismaExceptionFilter } from './exceptions/prisma.exception';
 import { ZodExceptionFilter } from './exceptions/zod.exception';
 import { UncaughtExceptionFilter } from './exceptions/global.exception';
+import { ConfigService } from '@nestjs/config';
 
 BigInt.prototype.toJSON = function () {
   return this.toString();
 };
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
 
   app.setGlobalPrefix('api');
 
@@ -25,8 +27,7 @@ async function bootstrap() {
     new ZodExceptionFilter(),
     new PrismaExceptionFilter(),
   );
-  const portEnv = process.env.PORT;
-  const port = portEnv ? Number(portEnv) : 3000;
+  const port = Number(configService.get('PORT')) ?? 3000;
 
   await app.listen(port);
   console.log(' room reservation system is running on port ' + port);
