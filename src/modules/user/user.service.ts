@@ -91,12 +91,16 @@ export class UserService {
   // -  findByEmail
   findByEmail(email: string) {
     return this.prismaService.user.findUnique({
-      where: { email: email },
+      where: {
+        email: email,
+
+        isDeleted: false,
+      },
     });
   }
 
   //mapping user without password and cast bigint into string
-  private mapUserWithoutPasswordAndCastBigInt(user: User): UserResponseDTO {
+  mapUserWithoutPasswordAndCastBigInt(user: User): UserResponseDTO {
     const userWithoutPassword = removeFields(user, ['password', 'isDeleted']);
 
     return {
