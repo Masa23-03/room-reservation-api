@@ -24,13 +24,14 @@ import { ZodValidationPipe } from 'src/pipes/zod-validation.pipe';
 import { AuthedUser } from 'src/decorators/user.decorator';
 import { paginationSchema } from 'src/utils/pagination-schema.util';
 import type { PaginationQueryType } from 'src/types/unifiedType';
+import { Role } from 'generated/prisma';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  @Roles('ADMIN')
+  @Roles(Role.ADMIN)
   create(
     @Body(new ZodValidationPipe(userValidationSchema))
     createdUserPayload: CreateUserDTO,
@@ -39,7 +40,7 @@ export class UserController {
   }
 
   @Get()
-  @Roles('ADMIN')
+  @Roles(Role.ADMIN)
   findAll(
     @Req() request: Express.Request,
     @Query(new ZodValidationPipe(paginationSchema)) query: PaginationQueryType,
@@ -48,7 +49,7 @@ export class UserController {
   }
 
   @Get(':id')
-  @Roles('ADMIN')
+  @Roles(Role.ADMIN)
   findOne(
     @Param('id')
     id: string,
@@ -57,7 +58,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  @Roles('ADMIN')
+  @Roles(Role.ADMIN)
   update(
     @Param('id') id: string,
     @Body(new ZodValidationPipe(updateUserRoleSchema))
@@ -67,7 +68,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  @Roles('ADMIN')
+  @Roles(Role.ADMIN)
   remove(@Param('id') id: string): Promise<Boolean> {
     return this.userService.remove(BigInt(id));
   }
