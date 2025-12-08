@@ -29,9 +29,13 @@ export type UpdateRoomStatusDto = Pick<Room, 'status'>;
 //     - `owner`
 //     - `createdAt`
 
-export type RoomResponseDto = Omit<Room, 'id' | 'ownerId' | 'updatedAt'> & {
+export type RoomResponseDto = Omit<
+  Room,
+  'id' | 'ownerId' | 'updatedAt' | 'price'
+> & {
   id: string;
   ownerId: string;
+  price: number;
 };
 
 // - RoomOverviewResponseDto (admin or guest list):
