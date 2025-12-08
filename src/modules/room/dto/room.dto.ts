@@ -3,7 +3,7 @@ import { Prisma, Room } from 'generated/prisma';
 //     - `name`
 //     - `capacity`
 //     - `price`
-export type CreateRoomDto = Pick<Room, 'name' | 'capacity' | 'price'>;
+export type CreateRoomDto = Pick<Room, 'name' | 'capacity'> & { price: number };
 
 // - UpdateRoomDto:
 //     - `name?`
@@ -12,7 +12,7 @@ export type CreateRoomDto = Pick<Room, 'name' | 'capacity' | 'price'>;
 //     - `status?` (AVAILABLE / UNAVAILABLE)
 //     *(Owners can update their own rooms)*
 export type UpdateRoomDto = Partial<
-  Pick<Room, 'capacity' | 'name' | 'price' | 'status'>
+  Pick<Room, 'capacity' | 'name' | 'status'> & { price: number }
 >;
 
 // - UpdateRoomStatusDto
