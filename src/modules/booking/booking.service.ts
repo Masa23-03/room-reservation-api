@@ -37,7 +37,8 @@ export class BookingService {
       createBookingDto.checkIn,
       createBookingDto.checkOut,
     );
-    if (overlap) throw new BadRequestException();
+    if (overlap)
+      throw new BadRequestException('Room is already booked in this period');
     const newBooking = await this.prismaService.booking.create({
       data: {
         roomId: roomIdi,
@@ -110,8 +111,8 @@ export class BookingService {
       throw new ForbiddenException(
         ' owner can only access their rooms bookings',
       );
-
-    return this.mapBooking(foundedBooking);
+    const { room, ...booking } = foundedBooking;
+    return this.mapBooking(booking as Booking);
   }
   //Update status , admin
   async updateStatus(
