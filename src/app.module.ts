@@ -4,6 +4,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { RoomModule } from './modules/room/room.module';
+import { BookingModule } from './modules/booking/booking.module';
 import path from 'path';
 
 @Module({
@@ -16,6 +17,7 @@ import path from 'path';
     AuthModule,
     UserModule,
     RoomModule,
+    BookingModule,
   ],
 })
 export class AppModule {}
