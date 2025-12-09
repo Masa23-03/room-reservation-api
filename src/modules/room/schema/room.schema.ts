@@ -42,14 +42,14 @@ export const roomQueryValidationSchema = paginationSchema
     ) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        path: ['maxCapacity'],
+        path: ['capacity'],
         message: 'max capacity should be >= min capacity',
       });
     }
     if (val.minPrice && val.maxPrice && val.maxPrice < val.minPrice) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        path: ['maxPrice'],
+        path: ['price'],
         message: 'max price should be >= min price!',
       });
     }
