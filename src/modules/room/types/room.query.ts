@@ -7,4 +7,6 @@ export type RoomQuery = PaginationQueryType & {
   maxCapacity?: number;
   minPrice?: number;
   maxPrice?: number;
+  startDate?: Date;
+  endDate?: Date;
 };
