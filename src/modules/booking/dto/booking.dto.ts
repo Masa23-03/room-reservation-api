@@ -35,9 +35,3 @@ export type BookingOverviewResponseDto = Pick<
   BookingResponseDto,
   'id' | 'roomId' | 'checkIn' | 'checkOut' | 'status'
 >;
-
-//TODO for later , optional
-// - BookingQueryDto Optional:
-//     - `startDate?`
-//     - `endDate?`
-//     - `roomId?`
