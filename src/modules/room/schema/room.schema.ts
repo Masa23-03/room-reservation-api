@@ -32,12 +32,14 @@ export const roomQueryValidationSchema = paginationSchema
     maxCapacity: z.coerce.number().int().min(1).optional(),
     minPrice: z.coerce.number().min(0).optional(),
     maxPrice: z.coerce.number().min(0).optional(),
+    startDate: z.coerce.date().optional(),
+    endDate: z.coerce.date().optional(),
   })
   //make sure min is less than max
   .superRefine((val, ctx) => {
     if (
-      val.minCapacity &&
-      val.maxCapacity &&
+      val.minCapacity !== undefined &&
+      val.maxCapacity !== undefined &&
       val.maxCapacity < val.minCapacity
     ) {
       ctx.addIssue({
@@ -46,11 +48,36 @@ export const roomQueryValidationSchema = paginationSchema
         message: 'max capacity should be >= min capacity',
       });
     }
-    if (val.minPrice && val.maxPrice && val.maxPrice < val.minPrice) {
+    if (
+      val.minPrice !== undefined &&
+      val.maxPrice !== undefined &&
+      val.maxPrice < val.minPrice
+    ) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ['price'],
         message: 'max price should be >= min price!',
+      });
+    }
+    if (val.endDate && !val.startDate) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['checkIn'],
+        message: 'start date is required with end date',
+      });
+    }
+    if (val.startDate && !val.endDate) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['checkOut'],
+        message: 'end date is required with start date',
+      });
+    }
+    if (val.startDate && val.endDate && val.endDate <= val.startDate) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['checkOut'],
+        message: 'end date should be after start date',
       });
     }
   }) satisfies ZodType<RoomQuery>;
