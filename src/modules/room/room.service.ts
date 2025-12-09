@@ -13,7 +13,13 @@ import {
 import { DatabaseService } from '../database/database.service';
 import { RoomQuery } from './types/room.query';
 import { ApiPaginationResponse } from 'src/types/unifiedType';
-import { Prisma, Role, Room } from 'generated/prisma';
+import {
+  BookingStatus,
+  Prisma,
+  Role,
+  Room,
+  RoomStatus,
+} from 'generated/prisma';
 import { removeFields } from 'src/utils/object.util';
 import { UserResponseDTO } from '../user/dto/user.dto';
 
@@ -151,11 +157,20 @@ export class RoomService {
     if (query.minPrice !== undefined || query.maxPrice !== undefined) {
       whereClause.price = {};
 
-      if (query.minPrice !== undefined)
-        whereClause.price.gte = query.minCapacity;
+      if (query.minPrice !== undefined) whereClause.price.gte = query.minPrice;
 
-      if (query.maxPrice !== undefined)
-        whereClause.price.lte = query.maxCapacity;
+      if (query.maxPrice !== undefined) whereClause.price.lte = query.maxPrice;
+    }
+    if (query.startDate && query.endDate) {
+      whereClause.bookings = {
+        none: {
+          status: {
+            in: [BookingStatus.PENDING, BookingStatus.CONFIRMED],
+          },
+          checkIn: { lt: query.endDate },
+          checkOut: { gt: query.startDate },
+        },
+      };
     }
 
     return whereClause;
