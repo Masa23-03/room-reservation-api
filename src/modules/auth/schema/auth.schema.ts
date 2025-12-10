@@ -6,7 +6,7 @@ export const registerValidationSchema = z.object({
   name: z.string().min(1).max(100),
   email: z.email().toLowerCase(),
   password: z.string().min(6).max(100),
-  role: z.enum(['GUEST', 'OWNER']).default('GUEST'),
+  role: z.enum(['GUEST', 'OWNER']).default('GUEST').optional(),
 }) satisfies ZodType<RegisterDto>;
 //login
 export const loginValidationSchema = registerValidationSchema.pick({
