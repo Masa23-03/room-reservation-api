@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { faker } from '@faker-js/faker';
 import { PrismaClient, Role, RoomStatus } from 'generated/prisma';
 import { generateUserSeed, getAdminUser, getOwnerUser } from './user.seed';
