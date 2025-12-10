@@ -1,8 +1,7 @@
 import 'dotenv/config';
 import { faker } from '@faker-js/faker';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Role, RoomStatus } from '@prisma/client';
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
-import { Role, RoomStatus } from '@prisma/client';
 import { generateUserSeed, getAdminUser, getOwnerUser } from './user.seed';
 import { generateRoomSeed } from './room.seed';
 import { generateBookingSeed } from './booking.seed';
