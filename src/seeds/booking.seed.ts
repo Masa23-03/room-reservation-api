@@ -18,4 +18,6 @@ export const generateBookingSeed = (roomId: bigint, guestId: bigint) => {
     checkIn: checkIn,
     checkOut: checkOut,
   };
+  return booking;
+  
 };
