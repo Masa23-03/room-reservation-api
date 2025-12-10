@@ -25,7 +25,7 @@ import {
 import { AuthedUser } from 'src/decorators/user.decorator';
 import type { Request } from 'express';
 import type { UserResponseDTO } from '../user/dto/user.dto';
-import { Role } from 'generated/prisma';
+import { Role } from '@prisma/client';
 import type { RoomQuery } from './types/room.query';
 
 @Controller('room')

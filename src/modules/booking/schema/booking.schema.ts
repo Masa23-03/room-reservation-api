@@ -1,6 +1,6 @@
 import z, { ZodType } from 'zod';
 import { CreateBookingDto, UpdateBookingStatusDto } from '../dto/booking.dto';
-import { BookingStatus } from 'generated/prisma';
+import { BookingStatus } from '@prisma/client';
 
 //     - `create`
 export const bookingValidationSchema = z

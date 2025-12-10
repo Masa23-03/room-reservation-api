@@ -1,4 +1,4 @@
-import { Prisma, Room } from 'generated/prisma';
+import { Prisma, Room } from '@prisma/client';
 // - CreateRoomDto:
 //     - `name`
 //     - `capacity`

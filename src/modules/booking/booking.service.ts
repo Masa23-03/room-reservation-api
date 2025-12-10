@@ -13,7 +13,7 @@ import {
   UpdateBookingStatusDto,
 } from './dto/booking.dto';
 import { DatabaseService } from '../database/database.service';
-import { Booking, BookingStatus, Prisma, Role } from 'generated/prisma';
+import { Booking, BookingStatus, Prisma, Role } from '@prisma/client';
 import { removeFields } from 'src/utils/object.util';
 import { UserResponseDTO } from '../user/dto/user.dto';
 import {

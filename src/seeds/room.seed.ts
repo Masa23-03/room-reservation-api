@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Room, RoomStatus } from 'generated/prisma';
+import { Room, RoomStatus } from '@prisma/client';
 
 export const generateRoomSeed = (ownerId: bigint) => {
   const room: Omit<

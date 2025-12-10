@@ -4,7 +4,7 @@ import {
   UpdateRoomDto,
   UpdateRoomStatusDto,
 } from '../dto/room.dto';
-import { RoomStatus } from 'generated/prisma';
+import { RoomStatus } from '@prisma/client';
 import { paginationSchema } from 'src/utils/pagination-schema.util';
 import { RoomQuery } from '../types/room.query';
 

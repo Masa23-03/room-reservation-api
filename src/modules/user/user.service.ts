@@ -6,7 +6,7 @@ import {
   UserResponseDTO,
 } from './dto/user.dto';
 import { DatabaseService } from '../database/database.service';
-import { User } from 'generated/prisma';
+import { User } from '@prisma/client';
 import { removeFields } from 'src/utils/object.util';
 import {
   ApiPaginationResponse,

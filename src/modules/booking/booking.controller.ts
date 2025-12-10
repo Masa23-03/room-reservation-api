@@ -17,7 +17,7 @@ import {
 import { AuthedUser } from 'src/decorators/user.decorator';
 import type { UserResponseDTO } from '../user/dto/user.dto';
 import { Roles } from 'src/decorators/role.decorator';
-import { Role } from 'generated/prisma';
+import { Role } from '@prisma/client';
 import type {
   CreateBookingDto,
   UpdateBookingStatusDto,

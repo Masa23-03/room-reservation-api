@@ -4,7 +4,7 @@ import {
   ExceptionFilter,
   HttpStatus,
 } from '@nestjs/common';
-import { Prisma } from 'generated/prisma';
+import { Prisma } from '@prisma/client';
 import { Request, Response } from 'express';
 import { ApiErrorResponse } from 'src/types/unifiedType';
 

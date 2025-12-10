@@ -1,6 +1,6 @@
 import z, { ZodType } from 'zod';
 import { CreateUserDTO, UpdateUserRoleDto } from '../dto/user.dto';
-import { Role } from 'generated/prisma';
+import { Role } from '@prisma/client';
 
 // user schema
 export const userValidationSchema = z.object({

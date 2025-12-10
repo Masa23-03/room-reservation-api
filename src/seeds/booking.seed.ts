@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Booking, BookingStatus } from 'generated/prisma';
+import { Booking, BookingStatus } from '@prisma/client';
 
 export const generateBookingSeed = (roomId: bigint, guestId: bigint) => {
   const checkIn = faker.date.soon({ days: 50 });

@@ -24,7 +24,7 @@ import { ZodValidationPipe } from 'src/pipes/zod-validation.pipe';
 import { AuthedUser } from 'src/decorators/user.decorator';
 import { paginationSchema } from 'src/utils/pagination-schema.util';
 import type { PaginationQueryType } from 'src/types/unifiedType';
-import { Role } from 'generated/prisma';
+import { Role } from '@prisma/client';
 
 @Controller('user')
 export class UserController {

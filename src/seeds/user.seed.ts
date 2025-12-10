@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Role, User } from 'generated/prisma';
+import { Role, User } from '@prisma/client';
 import * as argon2 from 'argon2';
 
 export const generateUserSeed = async (role: Role = Role.GUEST) => {

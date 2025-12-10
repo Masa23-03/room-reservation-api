@@ -1,5 +1,5 @@
 import { UserResponseDTO } from 'src/modules/user/dto/user.dto';
-import { Role, User } from 'generated/prisma';
+import { Role, User } from '@prisma/client';
 
 export type AuthResponseDto = {
   token: string;

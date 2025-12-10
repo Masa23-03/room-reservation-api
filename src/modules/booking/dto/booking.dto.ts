@@ -1,4 +1,4 @@
-import { Booking } from 'generated/prisma';
+import { Booking } from '@prisma/client';
 // - CreateBookingDto:
 //     - `checkIn`
 //     - `checkOut`

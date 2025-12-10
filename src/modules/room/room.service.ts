@@ -19,7 +19,7 @@ import {
   Role,
   Room,
   RoomStatus,
-} from 'generated/prisma';
+} from '@prisma/client';
 import { removeFields } from 'src/utils/object.util';
 import { UserResponseDTO } from '../user/dto/user.dto';
 
