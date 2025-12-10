@@ -5,9 +5,7 @@ import { generateUserSeed, getAdminUser, getOwnerUser } from './user.seed';
 import { generateRoomSeed } from './room.seed';
 import { generateBookingSeed } from './booking.seed';
 
-const prisma = new PrismaClient({
-  datasourceUrl: process.env.DATABASE_URL,
-} as any);
+const prisma = new PrismaClient();
 
 async function main() {
   // delete all records
