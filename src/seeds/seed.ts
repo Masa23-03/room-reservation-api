@@ -1,4 +1,8 @@
-import { PrismaClient } from 'generated/prisma';
+import { faker } from '@faker-js/faker';
+import { PrismaClient, Role, RoomStatus } from 'generated/prisma';
+import { generateUserSeed, getAdminUser, getOwnerUser } from './user.seed';
+import { generateRoomSeed } from './room.seed';
+import { generateBookingSeed } from './booking.seed';
 
 const prisma = new PrismaClient();
 async function main() {
@@ -6,5 +10,52 @@ async function main() {
   await prisma.booking.deleteMany({});
   await prisma.room.deleteMany({});
   await prisma.user.deleteMany({});
+  //seed admin
+  const admin = await prisma.user.create({
+    data: await getAdminUser(),
+  });
+  //seed owner
+  const owner = await prisma.user.create({
+    data: await getOwnerUser(),
+  });
+  //seed random guests
+  const userSeeds = await Promise.all(
+    faker.helpers.multiple(() => generateUserSeed(Role.GUEST), {
+      count: 5,
+    }),
+  );
+  await prisma.user.createMany({
+    data: userSeeds,
+  });
+
+  //fetch guests , cause we need them to create the bookings
+  const guests = await prisma.user.findMany({
+    where: { role: Role.GUEST },
+  });
+  //seed rooms and create them
+  const roomsSeeds = faker.helpers.multiple(() => generateRoomSeed(owner.id), {
+    count: 5,
+  });
+  await prisma.room.createMany({
+    data: roomsSeeds,
+  });
+  const rooms = await prisma.room.findMany({
+    where: { status: RoomStatus.AVAILABLE },
+  });
+  for (const g of guests) {
+    const randomRoom = faker.helpers.arrayElement(rooms);
+    const bookingSeedsData = generateBookingSeed(randomRoom.id, g.id);
+    await prisma.booking.create({
+      data: bookingSeedsData,
+    });
+  }
+
+  //seeding is done4
+  console.log('✅ Database seeded successfully');
+  await prisma.$disconnect();
 }
-main();
+main().catch(async (e) => {
+  console.log(e);
+  await prisma.$disconnect();
+  process.exit(1);
+});
