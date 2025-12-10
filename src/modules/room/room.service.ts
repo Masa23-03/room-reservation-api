@@ -13,13 +13,7 @@ import {
 import { DatabaseService } from '../database/database.service';
 import { RoomQuery } from './types/room.query';
 import { ApiPaginationResponse } from 'src/types/unifiedType';
-import {
-  BookingStatus,
-  Prisma,
-  Role,
-  Room,
-  RoomStatus,
-} from '@prisma/client';
+import { BookingStatus, Prisma, Role, Room, RoomStatus } from '@prisma/client';
 import { removeFields } from 'src/utils/object.util';
 import { UserResponseDTO } from '../user/dto/user.dto';
 
@@ -126,11 +120,18 @@ export class RoomService {
 
   //mapping
   private mapRoom(room: Room): RoomResponseDto {
-    return {
-      ...removeFields(room, ['id', 'ownerId', 'price']),
+    const pRoom = {
+      ...room,
       id: room.id.toString(),
       ownerId: room.ownerId.toString(),
       price: room.price.toNumber(),
+    };
+    return {
+      ...removeFields(pRoom, ['id', 'ownerId', 'price']),
+      id: pRoom.id,
+
+      ownerId: pRoom.ownerId,
+      price: pRoom.price,
     };
   }
 
