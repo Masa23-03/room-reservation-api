@@ -1,10 +1,14 @@
+import 'dotenv/config';
 import { faker } from '@faker-js/faker';
 import { PrismaClient, Role, RoomStatus } from 'generated/prisma';
 import { generateUserSeed, getAdminUser, getOwnerUser } from './user.seed';
 import { generateRoomSeed } from './room.seed';
 import { generateBookingSeed } from './booking.seed';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  datasourceUrl: process.env.DATABASE_URL,
+} as any);
+
 async function main() {
   // delete all records
   await prisma.booking.deleteMany({});
@@ -43,7 +47,9 @@ async function main() {
     where: { status: RoomStatus.AVAILABLE },
   });
   for (const g of guests) {
-    const randomRoom = faker.helpers.arrayElement(rooms);
+    const randomRoom = faker.helpers.arrayElement(
+      rooms,
+    ) as (typeof rooms)[number];
     const bookingSeedsData = generateBookingSeed(randomRoom.id, g.id);
     await prisma.booking.create({
       data: bookingSeedsData,
