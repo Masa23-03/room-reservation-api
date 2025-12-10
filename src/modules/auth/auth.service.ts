@@ -4,6 +4,7 @@ import { UserService } from '../user/user.service';
 import { AuthResponseDto, LoginDTO, RegisterDto } from './dto/auth.dto';
 import * as argon2 from 'argon2';
 import { Role } from '@prisma/client';
+import { email } from 'zod';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,9 @@ export class AuthService {
 
     //create user
     const createdUser = await this.userService.create({
-      ...payLoad,
+      name: payLoad.name,
+      email: payLoad.email,
+      role: payLoad.role ?? Role.GUEST,
       password: hashedPassword,
     });
 
