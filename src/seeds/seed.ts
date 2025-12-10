@@ -1,10 +1,22 @@
+import 'dotenv/config';
 import { faker } from '@faker-js/faker';
-import { PrismaClient, Role, RoomStatus } from 'generated/prisma';
+import { PrismaClient } from '../../generated/prisma/client';
+import { PrismaMariaDb } from '@prisma/adapter-mariadb';
+import { Role, RoomStatus } from 'generated/prisma';
 import { generateUserSeed, getAdminUser, getOwnerUser } from './user.seed';
 import { generateRoomSeed } from './room.seed';
 import { generateBookingSeed } from './booking.seed';
 
-const prisma = new PrismaClient();
+const adapter = new PrismaMariaDb({
+  host: process.env.DB_HOST ?? 'localhost',
+  port: Number(process.env.DB_PORT ?? 3306),
+  user: process.env.DB_USER ?? 'root',
+  password: process.env.DB_PASS ?? 'MySQL@123456',
+  database: process.env.DB_NAME ?? 'room_reservation_system',
+  connectionLimit: 5,
+});
+
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   // delete all records
@@ -57,8 +69,12 @@ async function main() {
   console.log('✅ Database seeded successfully');
   await prisma.$disconnect();
 }
-main().catch(async (e) => {
-  console.log(e);
-  await prisma.$disconnect();
-  process.exit(1);
-});
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
