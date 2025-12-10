@@ -5,8 +5,7 @@ export const generateBookingSeed = (roomId: bigint, guestId: bigint) => {
   const checkIn = faker.date.soon({ days: 50 });
   const stayPeriod = faker.number.int({ min: 1, max: 10 });
   const checkOut = new Date(
-    checkIn.getTime(),
-    stayPeriod * 24 * 60 * 60 * 1000,
+    checkIn.getTime() + stayPeriod * 24 * 60 * 60 * 1000,
   );
   const booking: Omit<
     Booking,
@@ -19,5 +18,4 @@ export const generateBookingSeed = (roomId: bigint, guestId: bigint) => {
     checkOut: checkOut,
   };
   return booking;
-  
 };
