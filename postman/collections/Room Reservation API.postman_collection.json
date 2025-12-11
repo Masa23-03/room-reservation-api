@@ -1,0 +1,3209 @@
+{
+  "info": {
+    "_postman_id": "3473d890-b6a9-472e-9323-c6f72c9b54d3",
+    "name": "Room Reservation API",
+    "description": "Task 12 – Mini Room Reservation SystemEndFragment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST – Login (Public)",
+          "id": "77f95583-47ac-43b9-8bc6-c330219a3b63",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"admin@123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "**URL:** `/auth/login`  \n**Description:** Authenticate user and return JWT.  \n**Body:** email, password  \n**Returns:** user + token  \n**Roles:** Public"
+          },
+          "response": [
+            {
+              "id": "a66944ef-60f5-4f48-ae95-45854f40cced",
+              "name": "201 – Login (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"admin@123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "352"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"160-kKefCvM0N46KydhJhrO0MBEt7Tg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 10:27:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"id\": \"15\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@gmail.com\",\n            \"role\": \"ADMIN\",\n            \"createdAt\": \"2025-12-10T10:11:18.674Z\",\n            \"updatedAt\": \"2025-12-10T10:11:18.674Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NTM2MjQ2NiwiZXhwIjoxNzY3OTU0NDY2fQ.xNam480PiepQOy24LIysDO_aZSb-n0cKcB5-5I-9Zmo\"\n    }\n}"
+            },
+            {
+              "id": "39d2ce5c-bd66-41a4-82e1-480236919f13",
+              "name": "201 – Login (Guest)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"Johnpaul_Hayes@yahoo.com\",\r\n    \"password\": \"password@123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "371"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"173-/jhpgtwrHyi/e+iBvMkEtiotgYE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 11:59:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"id\": \"34\",\n            \"name\": \"Darren Gorczany\",\n            \"email\": \"Johnpaul_Hayes@yahoo.com\",\n            \"role\": \"GUEST\",\n            \"createdAt\": \"2025-12-10T11:58:51.340Z\",\n            \"updatedAt\": \"2025-12-10T11:58:51.340Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNCIsInJvbGUiOiJHVUVTVCIsImlhdCI6MTc2NTM2Nzk3NSwiZXhwIjoxNzY3OTU5OTc1fQ.OE0afoMVnotpxdETCdmqY0mZlOcw2jI-eI8s2IxZYoA\"\n    }\n}"
+            },
+            {
+              "id": "c8c6b0fd-59b6-484d-a584-280e73658e43",
+              "name": "201 – Login (Owner)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"owner1@gmail.com\",\r\n    \"password\": \"owner1@123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "354"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"162-nMd7Oxl8J2iMC1Yvh4PAmqzHxCE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 12:04:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"id\": \"30\",\n            \"name\": \"Owner1\",\n            \"email\": \"owner1@gmail.com\",\n            \"role\": \"OWNER\",\n            \"createdAt\": \"2025-12-10T11:58:51.173Z\",\n            \"updatedAt\": \"2025-12-10T11:58:51.173Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMCIsInJvbGUiOiJPV05FUiIsImlhdCI6MTc2NTM2ODI5MywiZXhwIjoxNzY3OTYwMjkzfQ.zN-HC4-2ENPiPUixV_QgNdcFfIr9JPwfPtj5fpxcqI4\"\n    }\n}"
+            },
+            {
+              "id": "ad8df58a-e9d8-453f-aa4d-2bc4e60ea4b4",
+              "name": "401 – Invalid Credentials",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"random@gmail.com\",\r\n    \"password\": \"password@123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "130"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"82-vp6hgKdGpJo2CrIziSO0Y6CSiBY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 12:09:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 401,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T12:09:25.984Z\",\n    \"message\": \"Invalid credentials\",\n    \"path\": \"/api/auth/login\"\n}"
+            },
+            {
+              "id": "54f703ee-4e2d-4f49-9b88-76eb0a728903",
+              "name": "400 – Validation Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"\",\r\n  \"password\": \"\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "274"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"112-h0putvPhhysr1TTP1nTbN/Kgvkc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 12:14:15 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 400,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T12:14:15.199Z\",\n    \"message\": \"Validation failed\",\n    \"path\": \"/api/auth/login\",\n    \"fields\": [\n        {\n            \"field\": \"email\",\n            \"message\": \"Invalid email address\"\n        },\n        {\n            \"field\": \"password\",\n            \"message\": \"Too small: expected string to have >=6 characters\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "POST – Register (Public)",
+          "id": "5c7bd5dc-59a3-4053-b0e3-2db92ff4ce78",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n    \"name\": \"owner6\", \r\n    \"email\": \"owner6@gmail.com\",\r\n    \"password\": \"owner6@123456\",\r\n    \"role\":\"OWNER\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "**URL:** `/auth/register`  \n**Description:** Register a new user.  \n**Body:** name, email, password, role  \n**Returns:** user + token  \n**Roles:** Public"
+          },
+          "response": [
+            {
+              "id": "e52ae8ea-e053-4dba-9ebc-89c26556479d",
+              "name": "201 – Register (Guest)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"laila\", \r\n  \"email\": \"laila@hotmail.com\", \r\n  \"password\": \"password@123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "354"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"162-/PikfHEjCJRmkQGDrO1gWPboPpI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 15:49:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MCIsInJvbGUiOiJHVUVTVCIsImlhdCI6MTc2NTM4MTc3OCwiZXhwIjoxNzY3OTczNzc4fQ.ucdlEjg8baWnGdIdFXB2UQgrkDKtKbAPtP-t2taao-A\",\n        \"user\": {\n            \"id\": \"40\",\n            \"name\": \"laila\",\n            \"email\": \"laila@hotmail.com\",\n            \"role\": \"GUEST\",\n            \"createdAt\": \"2025-12-10T15:49:38.441Z\",\n            \"updatedAt\": \"2025-12-10T15:49:38.441Z\"\n        }\n    }\n}"
+            },
+            {
+              "id": "57b3b6b1-a835-4407-86f8-aea3a64b80ce",
+              "name": "400 – Invalid Role",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"admin2\", \r\n  \"email\": \"admin2@gmail.com\", \r\n  \"password\": \"admin@123456\",\r\n  \"role\":\"ADMIN\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "223"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"df-6XwuHahjeLuFBEvNNNd1yqmNYd4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 15:57:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 400,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T15:57:55.530Z\",\n    \"message\": \"Validation failed\",\n    \"path\": \"/api/auth/register\",\n    \"fields\": [\n        {\n            \"field\": \"role\",\n            \"message\": \"Invalid option: expected one of \\\"GUEST\\\"|\\\"OWNER\\\"\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "6c344e26-dd76-46cc-8323-d53de3ab1a1b",
+              "name": "400 – Validation Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"\", \r\n  \"email\": \"random@gmail.com\", \r\n  \"password\": \"\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "304"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"130-bAQKaO9bKq+WPQ9EAGclRMCHRUc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 15:53:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 400,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T15:53:35.528Z\",\n    \"message\": \"Validation failed\",\n    \"path\": \"/api/auth/register\",\n    \"fields\": [\n        {\n            \"field\": \"name\",\n            \"message\": \"Too small: expected string to have >=1 characters\"\n        },\n        {\n            \"field\": \"password\",\n            \"message\": \"Too small: expected string to have >=6 characters\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "e982e4b9-92d3-4578-88fa-fe55f51997cb",
+              "name": "409 – Conflict (Email Already Exists)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"layla\", \r\n  \"email\": \"laila@hotmail.com\", \r\n  \"password\": \"password@123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "576"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"240-+5rC7BGbesPM6AQIP4KOcFoXNXc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 15:55:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 409,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T15:55:51.595Z\",\n    \"message\": \"\\nInvalid `this.prismaService.user.create()` invocation in\\nC:\\\\Users\\\\masa\\\\Documents\\\\room-reservation-api\\\\src\\\\modules\\\\user\\\\user.service.ts:21:48\\n\\n  18 constructor(private readonly prismaService: DatabaseService) {}\\n  19 //   - createUser :service only\\n  20 async create(createUserDto: CreateUserDTO): Promise<UserResponseDTO> {\\n→ 21   const user = await this.prismaService.user.create(\\nUnique constraint failed on the constraint: `users_email_key`\",\n    \"path\": \"/api/auth/register\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Validate (Authenticated)",
+          "id": "3c2808d2-8636-4826-a6a4-95914f257879",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/validate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "validate"
+              ]
+            },
+            "description": "**URL:** `/auth/validate`  \n**Description:** Validate user token and return user.  \n**Body:** none  \n**Returns:** user + token  \n**Roles:** Any authenticated user"
+          },
+          "response": [
+            {
+              "id": "a6f7cf99-f65b-4bec-a13f-a558bed9eb09",
+              "name": "200 – Validate (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/validate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "validate"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "352"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"160-kwjXNz0tcgsZjXvjlemmYkqPFxY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:19:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"id\": \"29\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@gmail.com\",\n            \"role\": \"ADMIN\",\n            \"createdAt\": \"2025-12-10T11:58:51.110Z\",\n            \"updatedAt\": \"2025-12-10T11:58:51.110Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc2NTM4MzU4MSwiZXhwIjoxNzY3OTc1NTgxfQ.mPGDj5LLisUhJ1IESc0-Pi2iZz9ngocspiWrshOOb8g\"\n    }\n}"
+            },
+            {
+              "id": "a3031e4e-3aca-4494-b666-3ae1e2f6f20b",
+              "name": "401 – Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/validate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "validate"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "126"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"7e-CDtxsw0jUvGH+B0XYeiezes+mOQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:24:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 401,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T16:24:16.605Z\",\n    \"message\": \"Unauthorized\",\n    \"path\": \"/api/auth/validate\"\n}"
+            }
+          ]
+        }
+      ],
+      "id": "b500c69c-dbaf-47c5-ab0d-2dbee60974c4",
+      "description": "Handles user authentication (login, registration, token validation).",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "f92cc50a-79e0-481b-afb8-308221cf1583",
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "25ad79ce-9f99-4110-a4a6-2095b16882cb",
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "POST – Create User (Admin)",
+          "id": "0bb37dfe-8e0a-4aa7-98d8-3c9f05b41e8a",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"admin2\", \r\n  \"email\": \"admin2@gmail.com\", \r\n  \"password\": \"admin@123456\",\r\n  \"role\":\"ADMIN\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "description": "**URL:** `/user`  \n**Description:** Create a new user.  \n**Body:** name, email, password, role  \n**Returns:** created user  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "757db3c1-4dae-42eb-8770-a1d4a0290c6c",
+              "name": "201 – Create User (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"admin2\", \r\n  \"email\": \"admin2@gmail.com\", \r\n  \"password\": \"admin@123456\",\r\n  \"role\":\"ADMIN\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "171"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ab-kVPxHUFc+z0R/Gym3o5YG6gu7hg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:45:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"44\",\n        \"name\": \"admin2\",\n        \"email\": \"admin2@gmail.com\",\n        \"role\": \"ADMIN\",\n        \"createdAt\": \"2025-12-10T16:45:57.731Z\",\n        \"updatedAt\": \"2025-12-10T16:45:57.731Z\"\n    }\n}"
+            },
+            {
+              "id": "14385614-4f43-4dec-9647-e6d35fe3d76f",
+              "name": "403 – Forbidden (Non-Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"admin3\", \r\n  \"email\": \"admin3@gmail.com\", \r\n  \"password\": \"admin@123456\",\r\n  \"role\":\"ADMIN\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "114"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"72-YpacIbAOmgkbvh9w94BSwYwldC0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:49:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 403,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T16:49:07.209Z\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/api/user\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get All Users (Admin)",
+          "id": "b8cd976a-b2a1-419b-b218-970af59a23e1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "**URL:** `/user`  \n**Description:** Get all users with pagination.  \n**Body:** none  \n**Returns:** users + pagination  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "f8ac89cd-0308-4511-bbfc-f52d654da3ff",
+              "name": "200 – Get Users (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/user?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "845"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"34d-PnoTA0g5IE5g3h01FBAdd3UaWYQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:51:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"29\",\n            \"email\": \"admin@gmail.com\",\n            \"name\": \"Admin\",\n            \"role\": \"ADMIN\"\n        },\n        {\n            \"id\": \"30\",\n            \"email\": \"owner1@gmail.com\",\n            \"name\": \"Owner1\",\n            \"role\": \"OWNER\"\n        },\n        {\n            \"id\": \"31\",\n            \"email\": \"Priscilla_Bartell86@yahoo.com\",\n            \"name\": \"Paul Rowe\",\n            \"role\": \"GUEST\"\n        },\n        {\n            \"id\": \"32\",\n            \"email\": \"Coleman.Jacobson6@hotmail.com\",\n            \"name\": \"Jan DuBuque\",\n            \"role\": \"GUEST\"\n        },\n        {\n            \"id\": \"33\",\n            \"email\": \"Dashawn84@gmail.com\",\n            \"name\": \"Tom Renner\",\n            \"role\": \"GUEST\"\n        },\n        {\n            \"id\": \"34\",\n            \"email\": \"Johnpaul_Hayes@yahoo.com\",\n            \"name\": \"Darren Gorczany\",\n            \"role\": \"GUEST\"\n        },\n        {\n            \"id\": \"35\",\n            \"email\": \"Mabel_Franey@yahoo.com\",\n            \"name\": \"Eula Dach I\",\n            \"role\": \"GUEST\"\n        },\n        {\n            \"id\": \"36\",\n            \"email\": \"laila@example.com\",\n            \"name\": \"laila\",\n            \"role\": \"OWNER\"\n        },\n        {\n            \"id\": \"38\",\n            \"email\": \"laila@gmail.com\",\n            \"name\": \"laila\",\n            \"role\": \"GUEST\"\n        },\n        {\n            \"id\": \"40\",\n            \"email\": \"laila@hotmail.com\",\n            \"name\": \"laila\",\n            \"role\": \"GUEST\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 12,\n        \"totalPages\": 2,\n        \"limit\": 10,\n        \"page\": 1\n    }\n}"
+            },
+            {
+              "id": "7664477d-5614-4a32-924c-64dcef67c491",
+              "name": "403 – Forbidden (Non-Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/user?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "130"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"82-L5Bkm39TYUbdIoRD7db9qFWkorc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:53:48 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 403,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T16:53:48.489Z\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/api/user?page=1&limit=10\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH – Update User Role (Admin)",
+          "id": "c150cfe4-2cfe-40ad-a1bb-d2e20f50ff57",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{currentToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"role\": \"OWNER\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/31",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                "31"
+              ]
+            },
+            "description": "**URL:** `/user/:id`  \n**Description:** Change a user's role.  \n**Body:** role  \n**Returns:** updated user  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "3d87e7a7-fce2-4fd9-a939-92d7ab695824",
+              "name": "200 – Update User Role (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"role\": \"OWNER\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user/31",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "31"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "187"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"bb-Pz5pS1Qj96OFophRCTsRFXvZHGs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:57:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"31\",\n        \"name\": \"Paul Rowe\",\n        \"email\": \"Priscilla_Bartell86@yahoo.com\",\n        \"role\": \"OWNER\",\n        \"createdAt\": \"2025-12-10T11:58:51.340Z\",\n        \"updatedAt\": \"2025-12-10T16:57:14.271Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get User By ID (Admin)",
+          "id": "fbd004bc-0e28-4802-a515-8c66fe9800dd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{currentToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/31",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                "31"
+              ]
+            },
+            "description": "**URL:** `/user/:id`  \n**Description:** Get user by ID.  \n**Body:** none  \n**Returns:** user  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "483281bf-a2c9-4d88-9eba-f7906cda7398",
+              "name": "200 – Get User (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user/31",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "31"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "187"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"bb-Pz5pS1Qj96OFophRCTsRFXvZHGs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 16:58:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"31\",\n        \"name\": \"Paul Rowe\",\n        \"email\": \"Priscilla_Bartell86@yahoo.com\",\n        \"role\": \"OWNER\",\n        \"createdAt\": \"2025-12-10T11:58:51.340Z\",\n        \"updatedAt\": \"2025-12-10T16:57:14.271Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "DELETE – Delete User (Admin)",
+          "id": "22bb6089-f5f5-4dd9-ab14-ce18658a5b14",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{currentToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/31",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                "31"
+              ]
+            },
+            "description": "**URL:** `/user/:id`  \n**Description:** Soft delete a user.  \n**Body:** none  \n**Returns:** boolean  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "9f7b4e84-c787-4f33-a4f6-8f5b61728b5e",
+              "name": "200 – Delete User (Admin)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user/31",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "31"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "28"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c-Vt/6TvvrO9SE5YmGKzP/ETOJLzw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 17:00:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": true\n}"
+            }
+          ]
+        }
+      ],
+      "id": "27c363e6-e92a-43e5-970c-0565b17e77ff",
+      "description": "Admin-only endpoints for managing users in the system."
+    },
+    {
+      "name": "Rooms",
+      "item": [
+        {
+          "name": "POST – Create Room (Owner)",
+          "id": "e0a107ab-0f34-463b-af0f-110995a78a7f",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ownerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Conference Room E\",\r\n  \"capacity\": 6,\r\n  \"price\": 400.5,\r\n  \"status\": \"UNAVAILABLE\"\r\n  \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/room",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "room"
+              ]
+            },
+            "description": "**URL:** `/room`  \n**Description:** Create a new room.  \n**Body:** name, capacity, price, status (optional)  \n**Returns:** room  \n**Roles:** Owner"
+          },
+          "response": [
+            {
+              "id": "01a5193d-39bf-4872-aff2-311777209a4b",
+              "name": "403 – Forbidden (Non-owner)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Conference Room A\",\r\n  \"capacity\": 3,\r\n  \"price\": 150.5,\r\n  \"status\": \"AVAILABLE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/room",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "114"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"72-6AZBmp2f6n35AO96xyDDbJExDLI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 17:17:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 403,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T17:17:51.702Z\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/api/room\"\n}"
+            },
+            {
+              "id": "a4fc8f74-6f02-4cc1-a4b4-0b183f904b42",
+              "name": "201 – Create Room (Owner)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Conference Room A\",\r\n  \"capacity\": 3,\r\n  \"price\": 150.5,\r\n  \"status\": \"AVAILABLE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/room",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "203"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cb-2pF/3Wh+zt2IaQeAU5wplYhfKlk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 18:42:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"AVAILABLE\",\n        \"name\": \"Conference Room A\",\n        \"capacity\": 3,\n        \"createdAt\": \"2025-12-10T18:42:26.542Z\",\n        \"updatedAt\": \"2025-12-10T18:42:26.542Z\",\n        \"id\": \"28\",\n        \"ownerId\": \"30\",\n        \"price\": 150.5\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get All Rooms (Authenticated)",
+          "id": "25b6868b-1eee-41ca-ad76-25e0163aa926",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ownerToken 2}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/room",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "room"
+              ]
+            },
+            "description": "**URL:** `/room`  \n**Description:** List rooms with filters + pagination.  \n**Body:** none  \n**Returns:** rooms + pagination  \n**Roles:** Admin, Owner, Guest (each sees different results)"
+          },
+          "response": [
+            {
+              "id": "2eb4bc28-1b2f-409b-bc15-bf43fa1ba3f0",
+              "name": "200 – Get Rooms (Guest)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "850"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"352-dWIhvzWUBRmF2G53TwKfycqy0Mo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:00:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"21\",\n            \"name\": \"Intelligent Aluminum Salad\",\n            \"price\": 371.61,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"22\",\n            \"name\": \"Fantastic Concrete Fish\",\n            \"price\": 368.2,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"23\",\n            \"name\": \"Unbranded Plastic Tuna\",\n            \"price\": 101.54,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"24\",\n            \"name\": \"Fantastic Steel Bike\",\n            \"price\": 466.28,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"25\",\n            \"name\": \"Handmade Concrete Car\",\n            \"price\": 301.4,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"26\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"27\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"28\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"29\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"30\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 12,\n        \"totalPages\": 2,\n        \"limit\": 10,\n        \"page\": 1\n    }\n}"
+            },
+            {
+              "id": "404c3643-ca92-4e9d-b3dc-e51675495a66",
+              "name": "200 – Get Rooms (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "840"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"348-ZndKU7bTGVF7GBLBhMOA/rzYz7Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:13:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"21\",\n            \"name\": \"Updated Room Name\",\n            \"price\": 200,\n            \"status\": \"UNAVAILABLE\"\n        },\n        {\n            \"id\": \"22\",\n            \"name\": \"Fantastic Concrete Fish\",\n            \"price\": 368.2,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"23\",\n            \"name\": \"Unbranded Plastic Tuna\",\n            \"price\": 101.54,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"24\",\n            \"name\": \"Fantastic Steel Bike\",\n            \"price\": 466.28,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"25\",\n            \"name\": \"Handmade Concrete Car\",\n            \"price\": 301.4,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"26\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"27\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"28\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"29\",\n            \"name\": \"Conference Room A\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"30\",\n            \"name\": \"Updated Room Name\",\n            \"price\": 200,\n            \"status\": \"UNAVAILABLE\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 17,\n        \"totalPages\": 2,\n        \"limit\": 10,\n        \"page\": 1\n    }\n}"
+            },
+            {
+              "id": "66fee955-3f23-405e-af64-a484c6396bf7",
+              "name": "200 – Get Rooms (Owner)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "304"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"130-/73fM5+W+VOPhj/Uo4TyMj4UGC0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:14:15 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"37\",\n            \"name\": \"Conference Room 26\",\n            \"price\": 400.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"38\",\n            \"name\": \"Conference Room 36\",\n            \"price\": 500.5,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"39\",\n            \"name\": \"Conference Room 46\",\n            \"price\": 150.5,\n            \"status\": \"AVAILABLE\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 3,\n        \"totalPages\": 1,\n        \"limit\": 10,\n        \"page\": 1\n    }\n}"
+            },
+            {
+              "id": "146e5c4e-6d22-4627-9e04-b3c913faa706",
+              "name": "200 – Get Rooms (Pagination)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room?page=1&limit=3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "3"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "313"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"139-6OSj55bWf7xpaRJAYld4zRwBloQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:14:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"21\",\n            \"name\": \"Updated Room Name\",\n            \"price\": 200,\n            \"status\": \"UNAVAILABLE\"\n        },\n        {\n            \"id\": \"22\",\n            \"name\": \"Fantastic Concrete Fish\",\n            \"price\": 368.2,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"23\",\n            \"name\": \"Unbranded Plastic Tuna\",\n            \"price\": 101.54,\n            \"status\": \"AVAILABLE\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 19,\n        \"totalPages\": 7,\n        \"limit\": 3,\n        \"page\": 1\n    }\n}"
+            },
+            {
+              "id": "a44dc6ca-01ce-41dc-b2a9-a7e3b75aa5be",
+              "name": "200 – Get Rooms (Price range)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room?page=1&limit=3&minPrice=350&maxPrice=500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "3"
+                    },
+                    {
+                      "key": "minPrice",
+                      "value": "350"
+                    },
+                    {
+                      "key": "maxPrice",
+                      "value": "500"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "310"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"136-dAdQVwEj8x5HtetjoOL0h8yhdz8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:17:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"22\",\n            \"name\": \"Fantastic Concrete Fish\",\n            \"price\": 368.2,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"24\",\n            \"name\": \"Fantastic Steel Bike\",\n            \"price\": 466.28,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"32\",\n            \"name\": \"Conference Room C\",\n            \"price\": 400.5,\n            \"status\": \"AVAILABLE\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 7,\n        \"totalPages\": 3,\n        \"limit\": 3,\n        \"page\": 1\n    }\n}"
+            },
+            {
+              "id": "6c8b10ea-7fff-43a2-a1c6-6c3a735abdb7",
+              "name": "200 – Get Rooms (Capacity range)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room?page=1&limit=3&minCapacity=4",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "3"
+                    },
+                    {
+                      "key": "minCapacity",
+                      "value": "4"
+                    },
+                    {
+                      "key": "",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "311"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"137-9tw0R7de/5ap+bRLIA4IY7+dj4A\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:19:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"21\",\n            \"name\": \"Updated Room Name\",\n            \"price\": 200,\n            \"status\": \"UNAVAILABLE\"\n        },\n        {\n            \"id\": \"23\",\n            \"name\": \"Unbranded Plastic Tuna\",\n            \"price\": 101.54,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"24\",\n            \"name\": \"Fantastic Steel Bike\",\n            \"price\": 466.28,\n            \"status\": \"AVAILABLE\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 12,\n        \"totalPages\": 4,\n        \"limit\": 3,\n        \"page\": 1\n    }\n}"
+            },
+            {
+              "id": "eb974f80-0833-4db7-831a-348e72127517",
+              "name": "200 – Get Rooms (Date range)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room?page=1&limit=3&startDate=2026-01-10T10:00:00.000Z&endDate=2026-01-12T10:00:00.000Z",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "3"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2026-01-10T10:00:00.000Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2026-01-12T10:00:00.000Z"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "313"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"139-OhvMFckvvF+zLRUwQdRP22KI2Rg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:44:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"21\",\n            \"name\": \"Updated Room Name\",\n            \"price\": 200,\n            \"status\": \"UNAVAILABLE\"\n        },\n        {\n            \"id\": \"23\",\n            \"name\": \"Unbranded Plastic Tuna\",\n            \"price\": 101.54,\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"id\": \"25\",\n            \"name\": \"Handmade Concrete Car\",\n            \"price\": 301.4,\n            \"status\": \"UNAVAILABLE\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 17,\n        \"totalPages\": 6,\n        \"limit\": 3,\n        \"page\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get Room By ID (Authenticated)",
+          "id": "4dc00857-9409-49d9-96b2-6129291bcdef",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ownerToken 2}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/room/27",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "room",
+                "27"
+              ]
+            },
+            "description": "**URL:** `/room/:id`  \n**Description:** Get room details by ID.  \n**Body:** none  \n**Returns:** room  \n**Roles:** Any authenticated user"
+          },
+          "response": [
+            {
+              "id": "85685866-1cb4-48fb-b131-37ee7a78add0",
+              "name": "200 – Get Room (Authenticated)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/room/27",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room",
+                    "27"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "203"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cb-Ny7k7Uwb9e5ajE2is4ZBH1zLbSQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:17:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"AVAILABLE\",\n        \"name\": \"Conference Room A\",\n        \"capacity\": 3,\n        \"createdAt\": \"2025-12-10T18:41:45.188Z\",\n        \"updatedAt\": \"2025-12-10T18:41:45.188Z\",\n        \"id\": \"27\",\n        \"ownerId\": \"30\",\n        \"price\": 150.5\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH – Update Room (Owner)",
+          "id": "cd18036c-d9cb-4b5c-b43f-c03b3931e521",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ownerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Updated Room Name\",\r\n  \"capacity\": 4,\r\n  \"price\": 200.0,\r\n  \"status\": \"UNAVAILABLE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/room/30",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "room",
+                "30"
+              ]
+            },
+            "description": "**URL:** `/room/:id`  \n**Description:** Update room info.  \n**Body:** name, capacity, price, status  \n**Returns:** updated room  \n**Roles:** Owner (only their own rooms)"
+          },
+          "response": [
+            {
+              "id": "17a77ee8-d9cc-4aa6-bce2-e3b27fcfd1b0",
+              "name": "200 – Update Room (Owner)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Updated Room Name\",\r\n  \"capacity\": 4,\r\n  \"price\": 200.0,\r\n  \"status\": \"UNAVAILABLE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/room/30",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room",
+                    "30"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "203"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cb-uKU+jc+Dk6ez2NDmAnw91yOey4Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:05:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"UNAVAILABLE\",\n        \"name\": \"Updated Room Name\",\n        \"capacity\": 4,\n        \"createdAt\": \"2025-12-10T18:56:37.060Z\",\n        \"updatedAt\": \"2025-12-10T19:05:55.182Z\",\n        \"id\": \"30\",\n        \"ownerId\": \"30\",\n        \"price\": 200\n    }\n}"
+            },
+            {
+              "id": "404f5f6f-8d95-477f-b38b-222d1a4e2fd1",
+              "name": "403 – Forbidden (Other Owner)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Updated Room Name\",\r\n  \"capacity\": 4,\r\n  \"price\": 200.0,\r\n  \"status\": \"UNAVAILABLE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/room/37",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room",
+                    "37"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "117"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"75-7ZNjJxgxGzvM3fn/EucMwvT8poU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:12:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 403,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T19:12:21.724Z\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/api/room/37\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH – Update Room Status (Admin)",
+          "id": "b3debe8f-08d1-4988-af24-ad536bfe1f4e",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"UNAVAILABLE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/room/27",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "room",
+                "27"
+              ]
+            },
+            "description": "**URL:** `/room/:id/status`  \n**Description:** Change room status (AVAILABLE/UNAVAILABLE).  \n**Body:** status  \n**Returns:** updated room  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "4cc4041d-17fc-48dd-a063-a963afaa3383",
+              "name": "200 – Update Room Status (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"status\": \"UNAVAILABLE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/room/25/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room",
+                    "25",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "209"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d1-2rbV1lPjdmP9sI5B9kHiCbw5wc0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:20:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"UNAVAILABLE\",\n        \"name\": \"Handmade Concrete Car\",\n        \"capacity\": 4,\n        \"createdAt\": \"2025-12-10T11:58:51.351Z\",\n        \"updatedAt\": \"2025-12-10T19:20:41.336Z\",\n        \"id\": \"25\",\n        \"ownerId\": \"30\",\n        \"price\": 301.4\n    }\n}"
+            },
+            {
+              "id": "9de6baa5-2d1d-4eb1-93e8-c55b409da717",
+              "name": "403 – Forbidden (Non-Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"status\": \"UNAVAILABLE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/room/24/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "room",
+                    "24",
+                    "status"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "124"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"7c-RvBY14c4bwgUQlAmpPxacon3KXo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 19:21:29 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 403,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T19:21:29.009Z\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/api/room/24/status\"\n}"
+            }
+          ]
+        }
+      ],
+      "id": "a6d3a8c6-6ef5-4253-a0a1-df2ec4494ee3",
+      "description": "Endpoints for creating, viewing, and managing rooms."
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "POST – Create Booking (Guest)",
+          "id": "fd4d0248-a345-4164-bd42-5622670e91ce",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{guestToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"roomId\": \"22\",\r\n  \"checkIn\": \"2026-01-10T10:00:00.000Z\",\r\n  \"checkOut\": \"2026-01-12T10:00:00.000Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/booking",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "booking"
+              ]
+            },
+            "description": "**URL:** `/booking`  \n**Description:** Create a booking for a room.  \n**Body:** roomId, checkIn, checkOut  \n**Returns:** created booking  \n**Roles:** Guest"
+          },
+          "response": [
+            {
+              "id": "7d1688ec-c069-4ecb-84e4-d0cafe61da51",
+              "name": "403 – Forbidden (Non-guest)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"roomId\": \"22\",\r\n  \"checkIn\": \"2026-01-10T10:00:00.000Z\",\r\n  \"checkOut\": \"2026-01-12T10:00:00.000Z\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/booking",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "117"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"75-WJ6X49M5lRqaarMzrE/lam3j2mc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:26:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 403,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T21:26:58.968Z\",\n    \"message\": \"Forbidden\",\n    \"path\": \"/api/booking\"\n}"
+            },
+            {
+              "id": "091d92e6-beed-430f-a6a0-b5f27fdab010",
+              "name": "201 - Create Booking (Guest)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"roomId\": \"22\",\r\n  \"checkIn\": \"2026-01-10T10:00:00.000Z\",\r\n  \"checkOut\": \"2026-01-12T10:00:00.000Z\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/booking",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "197"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c5-v3G/nNwBLX4yZTUxL4IaX09cdgs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:27:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"PENDING\",\n        \"createdAt\": \"2025-12-10T21:27:38.118Z\",\n        \"checkIn\": \"2026-01-10T10:00:00.000Z\",\n        \"checkOut\": \"2026-01-12T10:00:00.000Z\",\n        \"id\": \"21\",\n        \"guestId\": \"34\",\n        \"roomId\": \"22\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get All Bookings (Admin)",
+          "id": "7473878d-4695-47f0-a4a9-5eab8c9eebf5",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/booking/admin",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "booking",
+                "admin"
+              ]
+            },
+            "description": "**URL:** `/booking/admin`  \n**Description:** List all bookings with pagination.  \n**Body:** none  \n**Returns:** bookings + pagination  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "4d9f0a89-2b96-4518-9c96-a3ec995ac32a",
+              "name": "200 – Get Bookings (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/booking/admin",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "admin"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "799"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"31f-CI1papXEebULEqW6i5xbbyv/8XA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:31:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"16\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2025-12-17T12:02:42.795Z\",\n            \"checkOut\": \"2025-12-25T12:02:42.795Z\",\n            \"roomId\": \"24\"\n        },\n        {\n            \"id\": \"17\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2025-12-24T00:33:38.049Z\",\n            \"checkOut\": \"2026-01-02T00:33:38.049Z\",\n            \"roomId\": \"22\"\n        },\n        {\n            \"id\": \"18\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2025-12-20T21:49:35.748Z\",\n            \"checkOut\": \"2025-12-29T21:49:35.748Z\",\n            \"roomId\": \"25\"\n        },\n        {\n            \"id\": \"19\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-19T06:05:53.090Z\",\n            \"checkOut\": \"2026-01-27T06:05:53.090Z\",\n            \"roomId\": \"25\"\n        },\n        {\n            \"id\": \"20\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-02T05:22:41.817Z\",\n            \"checkOut\": \"2026-01-11T05:22:41.817Z\",\n            \"roomId\": \"24\"\n        },\n        {\n            \"id\": \"21\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-10T10:00:00.000Z\",\n            \"checkOut\": \"2026-01-12T10:00:00.000Z\",\n            \"roomId\": \"22\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 6,\n        \"totalPages\": 1,\n        \"limit\": 10,\n        \"page\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get My Bookings (Guest)",
+          "id": "cc546bf8-50a7-43ab-8875-da69be150ed6",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{guestToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/booking/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "booking",
+                "me"
+              ]
+            },
+            "description": "**URL:** `/booking/me`  \n**Description:** List bookings created by guest.  \n**Body:** none  \n**Returns:** bookings + pagination  \n**Roles:** Guest"
+          },
+          "response": [
+            {
+              "id": "9b2fed27-0368-423d-a571-56b7d07fc84d",
+              "name": "200 – Get My Bookings (Guest)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/booking/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "319"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"13f-tlynGTxaIB807DqTqteewv0BXjA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:34:31 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"19\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-19T06:05:53.090Z\",\n            \"checkOut\": \"2026-01-27T06:05:53.090Z\",\n            \"roomId\": \"25\"\n        },\n        {\n            \"id\": \"21\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-10T10:00:00.000Z\",\n            \"checkOut\": \"2026-01-12T10:00:00.000Z\",\n            \"roomId\": \"22\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 2,\n        \"totalPages\": 1,\n        \"limit\": 10,\n        \"page\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get Bookings For My Rooms (Owner)",
+          "id": "7b6ccffe-4d4c-434d-a4b3-3bba3b6cd6ad",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ownerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/booking/owner",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "booking",
+                "owner"
+              ]
+            },
+            "description": "**URL:** `/booking/owner`  \n**Description:** List bookings for rooms owned by the owner.  \n**Body:** none  \n**Returns:** bookings + pagination  \n**Roles:** Owner"
+          },
+          "response": [
+            {
+              "id": "5c4f2c69-65a7-46c8-b88e-8e70308c0b61",
+              "name": "200 – Get Room Bookings (Owner)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/booking/owner",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "owner"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "799"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"31f-CI1papXEebULEqW6i5xbbyv/8XA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:35:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"16\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2025-12-17T12:02:42.795Z\",\n            \"checkOut\": \"2025-12-25T12:02:42.795Z\",\n            \"roomId\": \"24\"\n        },\n        {\n            \"id\": \"17\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2025-12-24T00:33:38.049Z\",\n            \"checkOut\": \"2026-01-02T00:33:38.049Z\",\n            \"roomId\": \"22\"\n        },\n        {\n            \"id\": \"18\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2025-12-20T21:49:35.748Z\",\n            \"checkOut\": \"2025-12-29T21:49:35.748Z\",\n            \"roomId\": \"25\"\n        },\n        {\n            \"id\": \"19\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-19T06:05:53.090Z\",\n            \"checkOut\": \"2026-01-27T06:05:53.090Z\",\n            \"roomId\": \"25\"\n        },\n        {\n            \"id\": \"20\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-02T05:22:41.817Z\",\n            \"checkOut\": \"2026-01-11T05:22:41.817Z\",\n            \"roomId\": \"24\"\n        },\n        {\n            \"id\": \"21\",\n            \"status\": \"PENDING\",\n            \"checkIn\": \"2026-01-10T10:00:00.000Z\",\n            \"checkOut\": \"2026-01-12T10:00:00.000Z\",\n            \"roomId\": \"22\"\n        }\n    ],\n    \"meta\": {\n        \"total\": 6,\n        \"totalPages\": 1,\n        \"limit\": 10,\n        \"page\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET – Get Booking By ID (Authenticated)",
+          "id": "b663eefa-d13c-44f6-97ac-307032273186",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ownerToken 2}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/booking/16",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "booking",
+                "16"
+              ]
+            },
+            "description": "**URL:** `/booking/:id`  \n**Description:** Get booking by ID.  \n**Body:** none  \n**Returns:** booking  \n**Roles:** Admin, Owner, Guest (access rules apply)"
+          },
+          "response": [
+            {
+              "id": "addd85ca-eb8e-490e-b3eb-6e9abe165f27",
+              "name": "200 – Get Booking (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/booking/16",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "16"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "197"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c5-DHlT0obigtQc9tEvEF5RVrKNKwo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:37:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"PENDING\",\n        \"createdAt\": \"2025-12-10T11:58:51.360Z\",\n        \"checkIn\": \"2025-12-17T12:02:42.795Z\",\n        \"checkOut\": \"2025-12-25T12:02:42.795Z\",\n        \"id\": \"16\",\n        \"guestId\": \"31\",\n        \"roomId\": \"24\"\n    }\n}"
+            },
+            {
+              "id": "90a637d6-baff-44b5-94a2-5f55008b7f39",
+              "name": "403 – Forbidden (Other Owner)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/booking/16",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "16"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "154"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9a-iEP0tgl/ro2a8oCUaBCxvhD7k6I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:38:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 403,\n    \"success\": false,\n    \"timestamp\": \"2025-12-10T21:38:44.182Z\",\n    \"message\": \" owner can only access their rooms bookings\",\n    \"path\": \"/api/booking/16\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH – Update Booking Status (Admin)",
+          "id": "e85e6e39-0350-49a2-a0ee-17cb131f93d2",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"CONFIRMED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/booking/17/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "booking",
+                "17",
+                "status"
+              ]
+            },
+            "description": "**URL:** `/booking/:id/status`  \n**Description:** Change booking status.  \n**Body:** status  \n**Returns:** updated booking  \n**Roles:** Admin"
+          },
+          "response": [
+            {
+              "id": "8b25b79f-2600-45db-93e6-1d63eafda50e",
+              "name": "200 – Update Booking Status (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"status\": \"CONFIRMED\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/booking/17/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "17",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "199"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c7-AQb9e0T0bM+eNFOxd9uvWe05B30\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 21:41:45 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"CONFIRMED\",\n        \"createdAt\": \"2025-12-10T11:58:51.365Z\",\n        \"checkIn\": \"2025-12-24T00:33:38.049Z\",\n        \"checkOut\": \"2026-01-02T00:33:38.049Z\",\n        \"id\": \"17\",\n        \"guestId\": \"32\",\n        \"roomId\": \"22\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "POST – Cancel Booking (Guest)",
+          "id": "b309780d-8c6b-4aac-9aab-7d96ad59def5",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{guestToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/booking/21/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "booking",
+                "21",
+                "cancel"
+              ]
+            },
+            "description": "**URL:** `/booking/:id/cancel`  \n**Description:** Cancel your own booking.  \n**Body:** none  \n**Returns:** boolean  \n**Roles:** Guest"
+          },
+          "response": [
+            {
+              "id": "5c8db54a-e8ba-48be-a604-ea663258cec1",
+              "name": "201 – Cancel Booking (Guest)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/booking/21/cancel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "21",
+                    "cancel"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "28"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c-Vt/6TvvrO9SE5YmGKzP/ETOJLzw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 11 Dec 2025 11:15:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": true\n}"
+            }
+          ]
+        }
+      ],
+      "id": "8700bc60-f00a-4764-8680-a0e1afae6dc7",
+      "description": "Endpoints for creating and managing room bookings based on user roles."
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{currentToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "59850b23-eb07-4985-a632-b36f5d8fb53f",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "1aa54be2-eb37-4a25-9911-ea111f49d2ab",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
